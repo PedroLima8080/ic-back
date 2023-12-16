@@ -1,0 +1,35 @@
+version: '3'
+services:
+    app:
+        container_name: ic-app
+        build:
+            context: ../../
+            dockerfile: Dockerfile
+        volumes:
+            - ../../:/var/www/html
+            - ../php.ini:/usr/local/etc/php/php.ini
+        working_dir: /var/www/html
+        ports:
+            - 80:80
+            - 443:443
+            - 5173:5173
+        networks:
+            - ic-api
+
+    mysql:
+        container_name: ic-db
+        image: mysql:5.7
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: mysql_database
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - ../mysql:/var/lib/mysql
+        networks:
+            - ic-api
+
+networks:
+  ic-api:
+    driver: "bridge"
+    external: true
