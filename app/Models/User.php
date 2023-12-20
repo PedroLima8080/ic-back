@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'admin',
+        'superadmin',
+        'company_id'
     ];
 
     /**
@@ -41,6 +44,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'admin' => 'boolean',
+        'superadmin' => 'boolean'
     ];
 
     public function getJWTIdentifier()

@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StepController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -21,17 +22,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('password', function() {
-    return Hash::make('123');
-});
+// Route::get('password', function() {
+//     return Hash::make('123');
+// });
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('user', function (Request $request) {
+    Route::get('auth', function (Request $request) {
         return $request->user();
     });
 
+    Route::resource('user', UserController::class);
     Route::resource('company', CompanyController::class);
     Route::resource('project', ProjectController::class);
     Route::resource('project.step', StepController::class);

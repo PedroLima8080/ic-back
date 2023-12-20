@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
     public function index() {
-        return Project::all();
+        $query = Project::query();
+
+        if(Auth::user()['company_id'] != null) {
+            $query->where('company_id', Auth::user()['company_id']);
+        }
+
+        return $query->with('steps', 'steps.tasks')->get();
     }
 
     public function store(Request $request) {

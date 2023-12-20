@@ -10,4 +10,8 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'company_id'];
+
+    public function steps() {
+        return $this->hasMany(Step::class, 'project_id', 'id');
+    }
 }
