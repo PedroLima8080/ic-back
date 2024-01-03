@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\MissionPerPeriodController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StepController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Models\MissionPerPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +40,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('project', ProjectController::class);
     Route::resource('project.step', StepController::class);
     Route::resource('project.step.task', TaskController::class);
+
+    Route::get('company/{company}/mission_per_period/in_period', [MissionPerPeriodController::class, 'inPeriod'])->name('company.mission_per_period.in_period');
+    Route::resource('company.mission_per_period', MissionPerPeriodController::class);
 });
 
