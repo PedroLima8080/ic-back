@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'admin',
         'superadmin',
-        'company_id'
+        'company_id',
+        'xp'
     ];
 
     /**

@@ -37,8 +37,8 @@ class MissionPerPeriodController extends Controller
         return $mission;
     }
 
-    public function destroy(Company $company, MissionPerPeriod $mission, Request $request) {
-        $mission->delete();
-        return $mission;
+    public function destroy(Company $company, MissionPerPeriod $missionPerPeriod, Request $request) {
+        $missionPerPeriod->delete();
+        return $missionPerPeriod;
     }
 }
