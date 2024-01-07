@@ -1,7 +1,7 @@
-version: '3'
+version: "3"
 services:
-    app:
-        container_name: ic-app
+    backend:
+        container_name: ic-backend
         build:
             context: ../../
             dockerfile: Dockerfile
@@ -15,7 +15,16 @@ services:
         networks:
             - ic-api
 
+    fontend:
+        image: nginx:latest
+        container_name: ic-fontend
+        ports:
+            - "80:80"
+        volumes:
+            - ./dist:/usr/share/nginx/html:ro
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
 networks:
-  ic-api:
-    driver: "bridge"
-    external: true
+    ic-api:
+        driver: "bridge"
+        external: true
