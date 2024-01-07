@@ -10,7 +10,7 @@ services:
             - ../php.ini:/usr/local/etc/php/php.ini
         working_dir: /var/www/html
         ports:
-            - 80:80
+            - 2555:80
             - 5173:5173
         networks:
             - ic-api
