@@ -19,7 +19,7 @@ services:
         image: nginx:latest
         container_name: ic-fontend
         ports:
-            - "80:80"
+            - "2556:80"
         volumes:
             - ./dist/sakai-ng:/usr/share/nginx/html:ro
             - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
