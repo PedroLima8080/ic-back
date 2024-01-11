@@ -13,18 +13,29 @@ services:
             - 2555:80
             - 5173:5173
         networks:
-            - ic-api
+            - ic-network
 
-    fontend:
+    frontend:
         image: nginx:latest
-        container_name: ic-fontend
+        container_name: ic-frontend
         ports:
             - "2556:80"
         volumes:
             - ./dist/sakai-ng:/usr/share/nginx/html:ro
             - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+        networks:
+            - ic-network
+
+    proxy:
+        image: nginx:latest
+        container_name: proxy
+        ports:
+            - "80:80"
+        volumes:
+            - ./proxy.conf:/etc/nginx/conf.d/default.conf:ro
+        networks:
+            - ic-network
 
 networks:
-    ic-api:
+    ic-network:
         driver: "bridge"
-        external: true
