@@ -28,17 +28,6 @@ services:
             - ic-network
         restart: always
 
-    test:
-        image: nginx:latest
-        container_name: test
-        ports:
-            - "2557:80"
-        # volumes:
-        #     - ./test.conf:/etc/nginx/conf.d/default.conf:ro
-        networks:
-            - ic-network
-        restart: always
-
     proxy:
         image: nginx:latest
         container_name: proxy
