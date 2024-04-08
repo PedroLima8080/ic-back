@@ -14,6 +14,7 @@ services:
             - 5173:5173
         networks:
             - ic-network
+            - vps-proxy-network
         restart: always
 
     frontend:
@@ -26,6 +27,7 @@ services:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
         networks:
             - ic-network
+            - vps-proxy-network
         restart: always
 
     test:
@@ -35,18 +37,7 @@ services:
             - "2557:80"
         networks:
             - ic-network
-        restart: always
-
-    proxy:
-        image: nginx:latest
-        container_name: proxy
-        ports:
-            - "2554:80"
-        volumes:
-            - ./pedraodev.shop.conf:/etc/nginx/conf.d/pedraodev.shop.conf:ro
-            - ./pedraodev2.shop.conf:/etc/nginx/conf.d/pedraodev2.shop.conf:ro
-        networks:
-            - ic-network
+            - vps-proxy-network
         restart: always
 
 networks:
