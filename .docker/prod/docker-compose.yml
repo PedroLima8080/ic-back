@@ -42,6 +42,6 @@ services:
 
 networks:
     ic-network:
-        driver: "bridge"
+        external: true
     vps-proxy-network:
         external: true
