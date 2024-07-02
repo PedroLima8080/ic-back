@@ -15,20 +15,6 @@ services:
             - ic-network
         restart: always
 
-    ic-db:
-        container_name: ic-db
-        image: mysql:5.7
-        ports:
-            - "2557:3306"
-        environment:
-            MYSQL_DATABASE: mysql_database
-            MYSQL_ROOT_PASSWORD: root
-        volumes:
-            - ./mysql:/var/lib/mysql
-        networks:
-            - ic-network
-        restart: always
-
 networks:
     ic-network:
         external: true
